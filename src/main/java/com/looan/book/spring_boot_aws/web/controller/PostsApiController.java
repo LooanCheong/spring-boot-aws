@@ -1,6 +1,7 @@
 package com.looan.book.spring_boot_aws.web.controller;
 
 import com.looan.book.spring_boot_aws.service.posts.PostsService;
+import com.looan.book.spring_boot_aws.web.dto.PostsResponseDto;
 import com.looan.book.spring_boot_aws.web.dto.PostsSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class PostsApiController {
     }
 
     @GetMapping("/api/v1/posts/{id}")
-    public PostResponseDto findById(@PathVariable Long id) {
+    public PostsResponseDto findById(@PathVariable Long id) {
         return postsService.findById(id);
     }
 }
