@@ -1,5 +1,6 @@
 package com.looan.book.spring_boot_aws.web.controller;
 
+import com.looan.book.spring_boot_aws.config.auth.LoginUser;
 import com.looan.book.spring_boot_aws.config.auth.dto.SessionUser;
 import com.looan.book.spring_boot_aws.service.posts.PostsService;
 import com.looan.book.spring_boot_aws.web.dto.PostsResponseDto;
@@ -18,10 +19,8 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession
-                .getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
